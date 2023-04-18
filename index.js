@@ -4,7 +4,7 @@ require('dotenv').config()  //env
 const cors=require('cors')  //cors
 const connectToMongo = require('./db')
 connectToMongo()    //connect to database
-const port = process.env.PORT || 8080
+const port = process.env.PORT || 10000
 
 app.use(cors()) //cors
 
