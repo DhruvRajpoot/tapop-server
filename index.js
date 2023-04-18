@@ -1,14 +1,31 @@
 const express = require('express')
 const app = express()
 require('dotenv').config()  //env
-const cors=require('cors')  //cors
-const connectToMongo = require('./db')
-connectToMongo()    //connect to database
 const port = process.env.PORT || 10000
 
-app.use(cors()) //cors
+//connect to database
+const connectToMongo = require('./db')
+connectToMongo()    
 
-app.use('/public',express.static('public'))   //static files
+ //cors
+const cors=require('cors') 
+app.use(cors({
+    origin: '*',
+})) 
+
+//file upload
+const fileUpload = require('express-fileupload')
+app.use(fileUpload({
+    useTempFiles:true
+}))   
+
+//body parser
+const bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
+
+// app.use('/public',express.static('public'))   //static files
 
 app.use('/form', require('./routes/formsubmit'))
 
