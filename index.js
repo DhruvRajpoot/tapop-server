@@ -24,9 +24,6 @@ const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-
-// app.use('/public',express.static('public'))   //static files
-
 app.use('/form', require('./routes/formsubmit'))
 
 app.listen(port, () => {
